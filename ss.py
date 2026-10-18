@@ -17,8 +17,9 @@ else:
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=df.index, y=df["Close"], name="Close"))
-    fig.add_trace(go.Scatter(x=df.index, y=df["avg_50"], name="avg_50"))
-    fig.add_trace(go.Scatter(x=df.index, y=df["volatility"], name="volatitty"))
+    fig.add_trace(go.Scatter(x=df.index, y=df["avg_20"], name="Average:20 Days"))
+    fig.add_trace(go.Scatter(x=df.index, y=df["avg_50"], name="Average:50 Days"))
+    fig.add_trace(go.Scatter(x=df.index, y=df["Return"], name="Return"))
     fig.update_layout(title=f"{ticker} price", xaxis_title="Date", yaxis_title="Price")
 
     sl.plotly_chart(fig, use_container_width=True)
