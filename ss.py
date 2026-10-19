@@ -8,13 +8,18 @@ sl.title("StockSense")
 ticker = sl.text_input("Ticker","AAPL").upper()
 period = sl.selectbox("Period",["1mo","3mo","6mo","1y","2y","5y"],index=3)
 
-df = get_data(ticker,period)
+from datetime import datetime, timedelta
+
+PERIOD_DAYS = {"1mo": 30, "3mo": 90, "6mo": 180, "1y": 365, "2y": 730, "5y": 1825}
+
+df = get_data(ticker)
 
 if df.empty:
-    sl.error("No data found lol.")
+    sl.error("No data found. Check the ticker symbol.")
 else:
     df = add_indicators(df)
-
+    df = df[df.index >= datetime.now() - timedelta(days=PERIOD_DAYS[period])]
+    # ...chart code stays the same
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=df.index, y=df["Close"], name="Close"))
     fig.add_trace(go.Scatter(x=df.index, y=df["avg_20"], name="Average:20 Days"))
