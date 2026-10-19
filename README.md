@@ -22,7 +22,7 @@ as a learning exercise in time-series evaluation (chronological
 train/test split, baseline comparison), not as a trading tool.
 
 ## Run locally
-    git clone <your-repo-url>
+    git clone <https://github.com/zayemo7/stock_sensibly.git>
     cd stocksense
     pip install -r requirements.txt
     streamlit run app.py
