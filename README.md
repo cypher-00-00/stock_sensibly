@@ -25,7 +25,7 @@ train/test split, baseline comparison), not as a trading tool.
     git clone <https://github.com/zayemo7/stock_sensibly.git>
     cd stocksense
     pip install -r requirements.txt
-    streamlit run app.py
+    streamlit run ss.py
 
 ## Limitations / future work
 - Cache resets on redeploy
