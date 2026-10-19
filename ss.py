@@ -25,7 +25,10 @@ else:
     fig.add_trace(go.Scatter(x=df.index, y=df["Close"], name="Close"))
     fig.add_trace(go.Scatter(x=df.index, y=df["avg_20"], name="Average:20 Days"))
     fig.add_trace(go.Scatter(x=df.index, y=df["avg_50"], name="Average:50 Days"))
-    fig.add_trace(go.Scatter(x=df.index, y=df["return"], name="Return"))
+    fig2 = go.Figure()
+    fig2.add_trace(go.Bar(x=df.index, y=df["Return"] * 100, name="Daily return (%)"))
+    fig2.update_layout(title="Daily return (%)", xaxis_title="Date", yaxis_title="%")
+    sl.plotly_chart(fig2, use_container_width=True)
     fig.update_layout(title=f"{ticker} price", xaxis_title="Date", yaxis_title="Price")
 
     sl.plotly_chart(fig, use_container_width=True)
