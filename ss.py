@@ -2,6 +2,7 @@ import streamlit as sl
 import plotly.graph_objects as go
 from data import get_data
 from anal import add_indicators
+from model import train_and_evaluate
 
 sl.title("StockSense")
 
@@ -29,3 +30,11 @@ else:
 
     sl.plotly_chart(fig, use_container_width=True)
     sl.dataframe(df.tail(10))
+
+    result = train_and_evaluate(df)
+    sl.subheader("Prediction (experimental)")
+    col1, col2, col3 = sl.columns(3)
+    col1.metric("Predicted next-day return", f"{result['next_return']*100:.2f}%")
+    col2.metric("Direction accuracy", f"{result['direction_acc']*100:.1f}%")
+    col3.metric("Beats baseline?", "Yes" if result["mae_model"] < result["mae_baseline"] else "No")
+    sl.caption("Learning project, not financial advice.")

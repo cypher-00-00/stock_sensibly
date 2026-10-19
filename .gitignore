@@ -1,2 +1,3 @@
 .venv
 stocksense.db
+__pycache__
